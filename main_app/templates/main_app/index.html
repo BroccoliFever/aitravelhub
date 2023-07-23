@@ -1,0 +1,15 @@
+{% block title %}Book with GPT!{% endblock %}
+{% block content %}
+    <h1>Book with GPT!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="prompt" placeholder="Enter your prompt" required>
+        <button type="submit">Generate</button>
+    </form>
+    
+    <div>
+        {% if generated_text %}
+            <p>{{ generated_text }}</p>
+        {% endif %}
+    </div>    
+{% endblock %}
