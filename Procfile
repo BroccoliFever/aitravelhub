@@ -1,1 +1,1 @@
-web: gunicorn GPT_Booking.wsgi
+web: gunicorn GPT_Booking.wsgi --timeout 60
