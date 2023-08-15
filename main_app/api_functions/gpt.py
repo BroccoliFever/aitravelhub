@@ -4,6 +4,15 @@ import json
 from .yelp import *
 
 def generate_text(prompt):
+    formate_string = """
+        {
+            "name": business name,
+            "rating": business rating,
+            "review_count": business review count,
+            "url": business url,
+            "image_url": business image url
+        }
+    """
     openai.api_key = settings.GPT_API_KEY
     yelp_function = yelp_get_function()
     messages = [{"role": "user", "content": prompt}]
@@ -32,15 +41,21 @@ def generate_text(prompt):
                                 {business['id']}:
                                 {business['name']} - {business['rating']}/5",
                                 {business['review_count']} reviews",
-                                
                                 """
                 }
             )
-        # Instruct it on how to format response
+        # System instructions
         messages.append(
             {
                 "role": "system",
-                "content": "In the above, do not show the business ID to the user, and please add a new line between each business.",
+                "content":  "Please return your response as a list of dictionaries, where each dictionary has only the keys: id, suggestion_reason."
+                            "The format MUST BE FOLLOWED as it is being passed to the Yelp API."
+                            "DO NOT PUT THE BUSINESS NAME AS THE ID, use the id that is returned from the Yelp API."
+                            "For example: [{id: 123, suggestion_reason: 'This business is great!'}, {id: 456, suggestion_reason: 'This business is also great!'}]}]"
+                            "Use what you know and what you get from the Yelp API to suggest ten businesses to the user." 
+                            "Tell the user why you are suggesting these businesses."
+                            "Don't include a sentence at the beginning of your reasons that says 'This place is has X stars and Y reviews.'"
+                            "Please make your reason about 100 to 150 characters long."
             }
         )
 

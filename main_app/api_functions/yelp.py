@@ -1,16 +1,15 @@
 import requests
 from django.conf import settings
 
-
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {settings.YELP_API_KEY}",
+}
 
 def yelp_get_data(location, term):
     url = "https://api.yelp.com/v3/businesses/search?"
     location_url = f"location={location}"
     term_url = f"term={term}"
-    headers = {
-        "accept": "application/json",
-        "Authorization": f"Bearer {settings.YELP_API_KEY}",
-    }
 
     response = requests.get(url + location_url + "&" + term_url, headers=headers)
     return response.json()
@@ -38,3 +37,8 @@ def yelp_get_function():
             },
         }
     ]
+
+def yelp_get_business_info(id):
+    url = f"https://api.yelp.com/v3/businesses/{id}"
+    return requests.get(url, headers=headers).json()
+

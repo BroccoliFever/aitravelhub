@@ -1,0 +1,91 @@
+:root {
+  --background-color: #f4f4f4; /* light grey */
+  --primary-color: #00a9a5; /* teal */
+  --secondary-color: #ff6b6b; /* coral */
+  --accent-color: #ffd166; /* goldenrod */
+  --text-color: #333333; /* dark grey */
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.card {
+  width: 25rem;
+  height: 34rem;
+  border: 2px solid var(--secondary-color);
+  transition: box-shadow 0.2s ease-in-out;
+  margin: 10px;
+}
+
+.card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.card-img-top {
+  max-height: 20rem;
+  object-fit: cover;
+}
+
+.card-body {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.card-title {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  border: none;
+}
+
+.text-muted {
+  font-size: 0.7rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+}
+
+.yelp-logo {
+  width: 75px;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.v-center {
+  display: flex;
+  margin: 0 auto;
+  width: 500px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  margin: 10px;
+}
